@@ -1,0 +1,169 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="MIPS_Datapath" id="mips-datapath-r">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- ================= COMPONENTS ================= -->
+        
+        <mxCell id="PC" value="PC" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="320" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="InstMem" value="Instruction&lt;br&gt;Memory" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="150" y="320" width="100" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Control" value="Control" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="320" y="60" width="80" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Regs" value="Registers" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="450" y="320" width="100" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ALU" value="ALU" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fontStyle=1;fixedSize=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="680" y="320" width="70" height="110" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="DataMem" value="Data&lt;br&gt;Memory" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="840" y="320" width="100" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Add1" value="Add&lt;br&gt;(PC+4)" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="150" y="80" width="60" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Mux1" value="Mux 1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="80" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Mux2" value="Mux 2" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="320" y="440" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Mux3" value="Mux 3" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="580" y="440" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="Mux4" value="Mux 4" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="340" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ANDGate" value="AND" style="shape=delay;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="160" width="60" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="ALUCtl" value="ALU&lt;br&gt;Control" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#0066CC;" vertex="1" parent="1">
+          <mxGeometry x="600" y="520" width="70" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ================= DATAPATH WIRES ================= -->
+        
+        <mxCell id="e_pc_mem" value="pc_meminst" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="PC" target="InstMem">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e_pc_add" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="PC" target="Add1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="110" y="360" /><mxPoint x="110" y="120" /></Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_add_mux1" value="add_mux1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Add1" target="Mux1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e_mux1_pc" value="mux1_PC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Mux1" target="PC">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="1080" y="120" /><mxPoint x="1080" y="20" /><mxPoint x="20" y="20" /><mxPoint x="20" y="360" /></Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_meminst_ctrl" value="meminst1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="InstMem" target="Control">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="280" y="340" /><mxPoint x="280" y="120" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_meminst_reg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="InstMem" target="Regs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e_meminst_mux2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="InstMem" target="Mux2">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="280" y="400" /><mxPoint x="280" y="480" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_br_alu" value="BR_ALU" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Regs" target="ALU">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="640" y="350" /><mxPoint x="640" y="350" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_br_mux3" value="BR_mux3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Regs" target="Mux3">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="560" y="430" /><mxPoint x="560" y="480" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_mux2_br" value="mux2_BR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Mux2" target="Regs">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="480" /><mxPoint x="400" y="440" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_mux3_alu" value="mux3_ALU" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Mux3" target="ALU">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="640" y="480" /><mxPoint x="640" y="410" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_alu_mux4" value="ALU_mux4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="ALU" target="Mux4">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="780" y="380" /><mxPoint x="780" y="460" /><mxPoint x="980" y="460" /><mxPoint x="980" y="390" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_alu_data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="ALU" target="DataMem">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e_data_mux4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="DataMem" target="Mux4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e_and_mux1" value="AND_MUX1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="ANDGate" target="Mux1">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="960" y="180" /><mxPoint x="960" y="140" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="e_mux4_br" value="mux4_BR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1" edge="1" parent="1" source="Mux4" target="Regs">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1060" y="380" /><mxPoint x="1060" y="500" /><mxPoint x="430" y="500" /><mxPoint x="430" y="380" /></Array></mxGeometry>
+        </mxCell>
+
+        <!-- ================= CONTROL SIGNALS (BLUE) ================= -->
+        
+        <mxCell id="c_regdst" value="RegDst_mux2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="Mux2">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="340" y="240" /><mxPoint x="340" y="440" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_branch" value="Branch_AND" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="ANDGate">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="460" y="70" /><mxPoint x="460" y="180" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_memread" value="MemRead_DataMemory" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="DataMem">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="480" y="90" /><mxPoint x="480" y="240" /><mxPoint x="860" y="240" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_memtoreg" value="MemToReag_mux4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="Mux4">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="500" y="110" /><mxPoint x="500" y="220" /><mxPoint x="1020" y="220" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_aluop" value="ALUOp_ALUCtl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="ALUCtl">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="200" /><mxPoint x="400" y="560" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_memwrite" value="MemWrite_DataMemory" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="DataMem">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="420" y="180" /><mxPoint x="420" y="280" /><mxPoint x="890" y="280" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_alusrc" value="ALUScr_mux3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="Mux3">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="380" y="200" /><mxPoint x="380" y="480" /></Array></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="c_regwrite" value="RegWrite_BR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontStyle=1;fontColor=#0066CC;strokeColor=#0066CC;strokeWidth=2;" edge="1" parent="1" source="Control" target="Regs">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="360" y="200" /><mxPoint x="360" y="280" /><mxPoint x="480" y="280" /></Array></mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
