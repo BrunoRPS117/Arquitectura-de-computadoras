@@ -1,0 +1,56 @@
+import tkinter as tk
+from tkinter import filedialog, messagebox
+
+def convertir_a_binario():
+    # 1. Obtener el texto ingresado en la caja de texto
+    texto = entrada_texto.get("1.0", tk.END).strip()
+
+    if not texto:
+        messagebox.showwarning("Texto vacío", "Por favor, ingresa algún texto (ej. Juan Perez).")
+        return
+
+    # 2. Convertir cada letra a ASCII y luego a binario
+    # ord(caracter) obtiene el valor entero ASCII.
+    # format(..., '08b') lo convierte a una cadena binaria de 8 bits (ej. 'A' -> 65 -> '01000001').
+    binario_lista = [format(ord(caracter), '08b') for caracter in texto]
+    
+    # Unimos los códigos binarios separados por un espacio para mayor legibilidad
+    texto_binario = ' '.join(binario_lista)
+
+    # 3. Abrir ventana de diálogo para que el usuario elija dónde guardar el .txt
+    archivo_destino = filedialog.asksaveasfilename(
+        defaultextension=".txt",
+        filetypes=[("Archivos de texto", "*.txt")],
+        title="Guardar resultado como"
+    )
+
+    # 4. Generar el archivo TXT
+    if archivo_destino: # Verifica que el usuario no haya cancelado el guardado
+        try:
+            with open(archivo_destino, 'w', encoding='utf-8') as archivo:
+                archivo.write(texto_binario)
+            messagebox.showinfo("Éxito", "¡Archivo TXT generado y guardado correctamente!")
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo guardar el archivo: {e}")
+
+# --- Configuración de la Interfaz Gráfica ---
+
+# Crear la ventana principal
+ventana = tk.Tk()
+ventana.title("Conversor de Texto a Binario")
+ventana.geometry("350x250")
+ventana.configure(padx=20, pady=20)
+
+# Crear la caja de entrada de texto (basado en el cuadro superior de tu esquema)
+entrada_texto = tk.Text(ventana, height=5, width=35, font=("Arial", 12))
+# Insertamos el texto de ejemplo de tu boceto
+entrada_texto.insert("1.0", "Juan Perez") 
+entrada_texto.pack(pady=(0, 15))
+
+# Crear el botón "Convertir" (basado en el cuadro inferior de tu esquema)
+boton_convertir = tk.Button(ventana, text="Convertir", command=convertir_a_binario, 
+                            font=("Arial", 10, "bold"), width=15, height=2)
+boton_convertir.pack()
+
+# Iniciar el bucle de la aplicación para que la ventana se mantenga abierta
+ventana.mainloop()
